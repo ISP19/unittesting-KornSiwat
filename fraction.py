@@ -25,42 +25,22 @@ class Fraction:
         self.numerator = numerator
         self.denominator = denominator
 
-    def __add__(self, frac):
-        """Return the sum of two fractions as a new fraction.
-           Use the standard formula  a/b + c/d = (ad+bc)/(b*d)
+        self.simplify()
+
+    def simplify(self):
+        """Simplify self value by dividing both numerator and denominator
+        with its greatest common factor.
         """
-        result_numerator = (self.numerator*frac.denominator) + \
-            (self.denominator*frac.numerator)
-        result_denominator = (self.denominator*frac.denominator)
+        gcd = math.gcd(self.numerator, self.denominator)
 
-        return Fraction(result_numerator, result_denominator)
-
-    def __mul__(self, frac):
-        """Return the multiplication of two fractions as a new fraction.
-        Use the standard formula a/b * c/d = (a*c)/(b*d)       
-        """
-        product_numerator = self.numerator * frac.numerator
-        product_denominator = self.denominator * frac.denominator
-        product = product_numerator/product_denominator
-
-        return product
-
-    def __eq__(self, frac):
-        """Two fractions are equal if they have the same value.
-           Fractions are stored in proper form so the internal representation
-           is unique (3/6 is same as 1/2).
-        """
-        first_fraction_in_decimal = self.numerator/self.denominator
-        second_fraction_in_decimal = frac.numerator/frac.denominator
-
-        return first_fraction_in_decimal == second_fraction_in_decimal
+        self.numerator = int(self.numerator/gcd)
+        self.denominator = int(self.denominator/gcd)
 
     def __str__(self):
         """Return a string in a form of self.numerator/self.denominator
-        or return in integer form if the denominator is 1 or -1.
+        or return in an integer form if the denominator is 1, -1 or the
+        numerator is 0.
         """
-        self.simplify()
-
         is_able_to_write_in_integer_form = (
             abs(self.denominator) == 1) or self.numerator == 0
         is_negative = (self.numerator < 0) != (self.denominator < 0)
@@ -74,14 +54,61 @@ class Fraction:
 
         return f"{self.numerator}/{self.denominator}"
 
-    def simplify(self):
-        """Simplify self value by dividing both numerator and denominator
-        with its greatest common factor.
+    def __eq__(self, fraction):
+        """Two fractions are equal if they have the same value.
+           Fractions are stored in proper form so the internal representation
+           is unique (3/6 is same as 1/2).
         """
-        gcd = math.gcd(self.numerator, self.denominator)
+        first_fraction_in_decimal = self.numerator/self.denominator
+        second_fraction_in_decimal = fraction.numerator/fraction.denominator
 
-        self.numerator = int(self.numerator/gcd)
-        self.denominator = int(self.denominator/gcd)
+        return first_fraction_in_decimal == second_fraction_in_decimal
+
+    def __add__(self, fraction):
+        """Return the sum of two fractions as a new fraction.
+           Use the standard formula  a/b + c/d = (ad+bc)/(b*d)
+        """
+        result_numerator = (self.numerator*fraction.denominator) + \
+            (self.denominator*fraction.numerator)
+        result_denominator = (self.denominator*fraction.denominator)
+
+        result_fraction = Fraction(result_numerator, result_denominator)
+
+        return result_fraction
+
+    def __sub__(self, fraction):
+        """Return the subtracted fraction of two fractions as a new fraction.
+           Use the standard formula  a/b - c/d = (ad-bc)/(b*d)
+        """
+        result_numerator = (self.numerator * fraction.denominator) - \
+            (self.denominator * fraction.numerator)
+        result_denominator = (self.denominator * fraction.denominator)
+
+        result_fraction = Fraction(result_numerator, result_denominator)
+
+        return result_fraction
+
+    def __mul__(self, fraction):
+        """Return the multiplication of two fractions as a new fraction.
+        Use the standard formula a/b * c/d = (a*c)/(b*d)       
+        """
+        product_numerator = self.numerator * fraction.numerator
+        product_denominator = self.denominator * fraction.denominator
+
+        product = Fraction(product_numerator, product_denominator)
+
+        return product
+
+    def __gt__(self, fraction):
+        """Return a boolean idicating whether self-value is
+        greater than the input fraction or not by covert
+        both fractions into decimal forms and compare them
+        with > operator
+        """
+        self_decimal_form = self.numerator/self.denominator
+        comparing_fraction_decimal_form = fraction.numerator/fraction.denominator
+
+        return self_decimal_form > comparing_fraction_decimal_form
 
     # Optional have fun and overload other operators such as
     # __sub__ for f-g
