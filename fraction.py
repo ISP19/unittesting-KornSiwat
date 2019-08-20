@@ -110,7 +110,19 @@ class Fraction:
 
         return self_decimal_form > comparing_fraction_decimal_form
 
-    # Optional have fun and overload other operators such as
-    # __sub__ for f-g
-    # __gt__  for f > g
-    # __neg__ for -f (negation)
+    def __lt__(self, fraction):
+        """Return a boolean idicating whether self-value is
+        less than the input fraction or not by covert
+        both fractions into decimal forms and compare them
+        with < operator
+        """
+        self_decimal_form = self.numerator/self.denominator
+        comparing_fraction_decimal_form = fraction.numerator/fraction.denominator
+
+        return self_decimal_form < comparing_fraction_decimal_form
+
+    def __neg__(self):
+        """Return the a new fraction by multiplied the initial
+        fraction with -1
+        """
+        return self * -1
