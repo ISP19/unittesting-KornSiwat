@@ -33,11 +33,15 @@ class UniqueTest(unittest.TestCase):
     def test_wrong_input_type(self):
         with self.assertRaises(TypeError):
             unique(True)
+
         with self.assertRaises(TypeError):
             unique(0)
+
         with self.assertRaises(TypeError):
             unique(3.145723929)
+
         with self.assertRaises(TypeError):
             unique("ISP is challenging")
+
         with self.assertRaises(TypeError):
             unique(None)
