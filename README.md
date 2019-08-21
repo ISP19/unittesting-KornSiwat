@@ -18,15 +18,16 @@ Write a table describing your test cases.
 
 ## Test Cases for Fraction
 
-| Test case                   | Expected Result                                             |
-| --------------------------- | ----------------------------------------------------------- |
-| init with int type          | instance of Fraction or ValueError if a denominator is zero |
-| init with not int type      | raises TypeError                                            |
-| call \_\_str\_\_            | string of simplified fraction                               |
-| test equality               | true if their values are equal and false if not             |
-| test addition               | sum of fractions is mathematically correct                  |
-| test subtraction            | result of subtraction is mathematically correct             |
-| test multiplication         | product of fractions is mathematically correct              |
-| test greater than operation | true if a fraction is greater and false if not              |
-| test less than operation    | true if a fraction is lesser and false if not               |
-| test neg                    | result is equal to the initial fraction multiplied by -1      |
+| Test case              | Expected Result                                             |
+| ---------------------- | ----------------------------------------------------------- |
+| init with int type     | instance of Fraction or ValueError if a denominator is zero |
+| init with not int type | raises TypeError                                            |
+| call \_\_str\_\_       | string of simplified fraction                               |
+| equality               | true if their values are equal and false if not             |
+| addition               | sum of fractions is mathematically correct                  |
+| subtraction            | result of subtraction is mathematically correct             |
+| multiplication         | product of fractions is mathematically correct              |
+| division               | result of fractions division is mathematically correct      |
+| greater than operation | true if a fraction is greater and false if not              |
+| less than operation    | true if a fraction is lesser and false if not               |
+| neg                    | result is equal to the initial fraction multiplied by -1    |
