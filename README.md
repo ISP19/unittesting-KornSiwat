@@ -30,4 +30,4 @@ Write a table describing your test cases.
 | division               | result of fractions division is mathematically correct      |
 | greater than operation | true if a fraction is greater and false if not              |
 | less than operation    | true if a fraction is lesser and false if not               |
-| neg                    | result is equal to the initial fraction multiplied by -1    |
+| negation               | result is equal to the initial fraction multiplied by -1    |
