@@ -99,6 +99,14 @@ class Fraction:
 
         return product
 
+    def __truediv__(self, fraction):
+        """Return the division of two fractions as a new fraction.
+        Use the standard formula a/b / c/d = (a/b)*(d/c)       
+        """
+        diviser_fraction = Fraction(fraction.denominator, fraction.numerator)
+
+        return self * diviser_fraction
+
     def __gt__(self, fraction):
         """Return a boolean idicating whether self-value is
         greater than the input fraction or not by covert
