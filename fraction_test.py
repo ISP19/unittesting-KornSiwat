@@ -94,6 +94,13 @@ class FractionTest(unittest.TestCase):
         self.assertEqual(Fraction(2, 27), Fraction(1, 3) * Fraction(2, 9))
         self.assertEqual(Fraction(6), Fraction(2) * Fraction(3))
 
+    def test_div(self):
+        self.assertEqual(Fraction(2), Fraction(2) / Fraction(1))
+        self.assertEqual(Fraction(2, 3), Fraction(2) / Fraction(3))
+        self.assertEqual(Fraction(1, 9), Fraction(1, 3) / Fraction(3))
+        self.assertEqual(Fraction(63, 24), Fraction(7, 3) / Fraction(8, 9))
+        self.assertEqual(Fraction(2, 3), Fraction(2) / Fraction(3))
+
     def test_gt(self):
         self.assertGreater(Fraction(0, 2), Fraction(1, -4))
         self.assertGreater(Fraction(1, 2), Fraction(1, 4))
