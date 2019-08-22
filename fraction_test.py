@@ -13,12 +13,6 @@ class FractionTest(unittest.TestCase):
         self.assertIsInstance(Fraction(3*3, 2*8), Fraction)
         self.assertIsInstance(Fraction(5**3), Fraction)
 
-        with self.assertRaises(ValueError):
-            Fraction(1, 0)
-
-        with self.assertRaises(ValueError):
-            Fraction(-1, 0)
-
     def test_init_with_not_int_type(self):
         with self.assertRaises(TypeError):
             Fraction("string")
@@ -54,6 +48,9 @@ class FractionTest(unittest.TestCase):
         f = Fraction(99)
         self.assertEqual("99", f.__str__())
 
+        f = Fraction(0, 0)
+        self.assertEqual("nan", f.__str__())
+
     def test_repr(self):
         f = Fraction(-80, 20)
         self.assertEqual("Fraction(-4, 1)", f.__repr__())
@@ -79,6 +76,9 @@ class FractionTest(unittest.TestCase):
         f = Fraction(99)
         self.assertEqual("Fraction(99, 1)", f.__repr__())
 
+        f = Fraction(99, 0)
+        self.assertEqual("Fraction(99, 0)", f.__repr__())
+
     def test_eq(self):
         neg_one_over_seven = Fraction(-1, 7)
         neg_one_over_neg_two = Fraction(-1, -2)
@@ -87,6 +87,7 @@ class FractionTest(unittest.TestCase):
         one_over_neg_seven = Fraction(1, -7)
         ten_k_over_twenty_k_and_one = Fraction(10000, 20001)
         zero_over_nine = Fraction(0, 9)
+        zero_over_zero = Fraction(0, 0)
 
         self.assertEqual(neg_fourty_over_neg_eighteen, neg_one_over_neg_two)
         self.assertEqual(one_over_two, neg_fourty_over_neg_eighteen)
@@ -97,6 +98,7 @@ class FractionTest(unittest.TestCase):
         self.assertNotEqual(ten_k_over_twenty_k_and_one, one_over_neg_seven)
         self.assertNotEqual(zero_over_nine, one_over_neg_seven)
         self.assertNotEqual(zero_over_nine, one_over_neg_seven)
+        self.assertNotEqual(zero_over_zero, zero_over_zero)
 
     def test_add(self):
         self.assertEqual(Fraction(0), Fraction(25, 100) + Fraction(-1, 4))
@@ -105,12 +107,16 @@ class FractionTest(unittest.TestCase):
         self.assertEqual(Fraction(-3, 2), Fraction(-2, 1) + Fraction(1, 2))
         self.assertEqual(Fraction(3, 4), Fraction(1, 12) + Fraction(2, 3))
 
+        self.assertTrue(math.isnan(Fraction(1, 12) + Fraction(2, 0)))
+
     def test_sub(self):
         self.assertEqual(Fraction(0), Fraction(25, 100) - Fraction(1, 4))
         self.assertEqual(Fraction(0), Fraction(0, 100) - Fraction(0, 4))
         self.assertEqual(Fraction(-5, 2), Fraction(-2, 1) - Fraction(1, 2))
         self.assertEqual(Fraction(1, 2), Fraction(25, 100) - Fraction(-1, 4))
         self.assertEqual(Fraction(-7, 12), Fraction(1, 12) - Fraction(2, 3))
+
+        self.assertTrue(math.isnan(Fraction(0, 0) - Fraction(2, 3)))
 
     def test_mul(self):
         self.assertEqual(Fraction(0), Fraction(0) * Fraction(0))
@@ -119,12 +125,16 @@ class FractionTest(unittest.TestCase):
         self.assertEqual(Fraction(2, 27), Fraction(1, 3) * Fraction(2, 9))
         self.assertEqual(Fraction(6), Fraction(2) * Fraction(3))
 
+        self.assertTrue(math.isnan(Fraction(0, 0) * Fraction(2, 3)))
+
     def test_div(self):
         self.assertEqual(Fraction(2), Fraction(2) / Fraction(1))
         self.assertEqual(Fraction(2, 3), Fraction(2) / Fraction(3))
         self.assertEqual(Fraction(1, 9), Fraction(1, 3) / Fraction(3))
         self.assertEqual(Fraction(63, 24), Fraction(7, 3) / Fraction(8, 9))
         self.assertEqual(Fraction(2, 3), Fraction(2) / Fraction(3))
+
+        self.assertTrue(math.isnan(Fraction(0, 0) / Fraction(2, 3)))
 
     def test_gt(self):
         self.assertGreater(Fraction(0, 2), Fraction(1, -4))
@@ -134,6 +144,7 @@ class FractionTest(unittest.TestCase):
         self.assertFalse(Fraction(0) > Fraction(0))
         self.assertFalse(Fraction(1, 100) > Fraction(1, 10))
         self.assertFalse(Fraction(-10, 2) > Fraction(-1, 4))
+        self.assertFalse(Fraction(1, 0) > Fraction(0, 0))
 
     def test_lt(self):
         self.assertLess(Fraction(-10, 2), Fraction(-1, 4))
@@ -143,6 +154,7 @@ class FractionTest(unittest.TestCase):
         self.assertFalse(Fraction(0, 2) < Fraction(1, -4))
         self.assertFalse(Fraction(1, 2) < Fraction(1, 4))
         self.assertFalse(Fraction(9, 27) < Fraction(25, 100))
+        self.assertFalse(Fraction(-9, 0) < Fraction(0, 0))
 
     def test_neg(self):
         self.assertEqual(Fraction(-1, 2), -Fraction(1, 2))
@@ -150,3 +162,5 @@ class FractionTest(unittest.TestCase):
         self.assertEqual(Fraction(-1, 2), -Fraction(1, 2))
         self.assertEqual(Fraction(-1, -2), -Fraction(-1, 2))
         self.assertEqual(Fraction(1, 2), -Fraction(-1, 2))
+
+        self.assertTrue(math.isnan(-Fraction(-1, 0)))
