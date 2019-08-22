@@ -54,6 +54,31 @@ class FractionTest(unittest.TestCase):
         f = Fraction(99)
         self.assertEqual("99", f.__str__())
 
+    def test_repr(self):
+        f = Fraction(-80, 20)
+        self.assertEqual("Fraction(-4, 1)", f.__repr__())
+
+        f = Fraction(3, -1)
+        self.assertEqual("Fraction(3, -1)", f.__repr__())
+
+        f = Fraction(36, -60)
+        self.assertEqual("Fraction(3, -5)", f.__repr__())
+
+        f = Fraction(0, 5)
+        self.assertEqual("Fraction(0, 1)", f.__repr__())
+
+        f = Fraction(60, 90)
+        self.assertEqual("Fraction(2, 3)", f.__repr__())
+
+        f = Fraction(1500, 60)
+        self.assertEqual("Fraction(25, 1)", f.__repr__())
+
+        f = Fraction(1500, 90)
+        self.assertEqual("Fraction(50, 3)", f.__repr__())
+
+        f = Fraction(99)
+        self.assertEqual("Fraction(99, 1)", f.__repr__())
+
     def test_eq(self):
         neg_one_over_seven = Fraction(-1, 7)
         neg_one_over_neg_two = Fraction(-1, -2)
