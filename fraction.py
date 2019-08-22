@@ -58,7 +58,7 @@ class Fraction:
     def __repr__(self):
         """Return a string in a form of 'Fraction(a, b)'
         """
-        return f"Fraction({self.numerator}/ {self.denominator})"
+        return f"Fraction({self.numerator}, {self.denominator})"
 
     def __eq__(self, fraction):
         """Two fractions are equal if they have the same value.
