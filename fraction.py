@@ -39,7 +39,8 @@ class Fraction:
     def __str__(self):
         """Return a string in a form of self.numerator/self.denominator
         or return in an integer form if the denominator is 1, -1 or the
-        numerator is 0.
+        numerator is 0
+        or return nan if the denominator is 0
         """
         is_able_to_write_in_integer_form = (
             abs(self.denominator) == 1) or self.numerator == 0
@@ -53,6 +54,11 @@ class Fraction:
             return f"-{abs(self.numerator)}/{abs(self.denominator)}"
 
         return f"{self.numerator}/{self.denominator}"
+
+    def __repr__(self):
+        """Return a string in a form of 'Fraction(a, b)'
+        """
+        return f"Fraction({self.numerator}/ {self.denominator})"
 
     def __eq__(self, fraction):
         """Two fractions are equal if they have the same value.
