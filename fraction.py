@@ -18,7 +18,6 @@ class Fraction:
         if type(numerator) is not int:
             raise TypeError("numerator must be an integer")
         if type(denominator) is not int:
-            print(f"error dno vl = {denominator}")
             raise TypeError("denominator must be an integer")
 
         self.numerator = numerator
