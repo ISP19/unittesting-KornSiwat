@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/KornSiwat/unittesting-KornSiwat.svg?branch=master)](https://travis-ci.com/unittesting-KornSiwat)
+[![Build Status](https://travis-ci.com/KornSiwat/unittesting-KornSiwat.svg?branch=master)](https://travis-ci.com/KornSiwat/unittesting-KornSiwat)
 
 ## Unit Testing Assignment
 
