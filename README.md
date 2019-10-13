@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/KornSiwat/unittesting-KornSiwat.svg?branch=master)](https://travis-ci.com/unittesting-KornSiwat)
+
 ## Unit Testing Assignment
 
 by Siwat Ponpued 6110546640.
@@ -7,7 +9,7 @@ by Siwat Ponpued 6110546640.
 Write a table describing your test cases.
 
 | Test case                                      | Expected Result              |
-|------------------------------------------------|------------------------------|
+| ---------------------------------------------- | ---------------------------- |
 | empty list                                     | empty list                   |
 | one item without duplication                   | list with 1 item             |
 | one item with duplications                     | list with 1 item             |
@@ -19,7 +21,7 @@ Write a table describing your test cases.
 ## Test Cases for Fraction
 
 | Test case              | Expected Result                                          |
-|------------------------|----------------------------------------------------------|
+| ---------------------- | -------------------------------------------------------- |
 | init with int type     | instance of Fraction class                               |
 | init with not int type | raises TypeError                                         |
 | call \_\_str\_\_       | string of simplified fraction                            |
