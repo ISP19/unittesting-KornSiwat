@@ -164,3 +164,7 @@ class FractionTest(unittest.TestCase):
         self.assertEqual(Fraction(1, 2), -Fraction(-1, 2))
 
         self.assertTrue(math.isnan(-Fraction(-1, 0)))
+
+
+if __name__ == '__main__':
+    unittest.main(verbosity=2)
